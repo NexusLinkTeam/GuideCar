@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F5F5F5</color>
+    <color name="colorPrimaryDark">#00717171</color>
+    <color name="colorAccent">#4387FA</color>
+    <color name="colorWhiteDark">#FAFAFA</color>
+    <color name="colorBlackLight">#202020</color>
+    <color name="colorGray">#737373</color>
+    <!--夜间模式的颜色-->
+    <color name="colorPrimaryNight">#212121</color>
+    <color name="colorBlackLighter">#303030</color>
+    <color name="colorGrayLight">#BDBDBD</color>
+</resources>

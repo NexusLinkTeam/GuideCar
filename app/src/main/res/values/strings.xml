@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">GuideCar</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="toolbar_head">Guide</string>
+    <string name="toolbar_tail">Car</string>
+    <string name="NightMode">夜间模式</string>
+    <string name="AccentColor">强调色</string>
+    <string name="theme">主题</string>
+    <string name="LightMode_Detail">降低屏幕亮度</string>
+    <string name="NightModeAuto">自动切换夜间模式</string>
+    <string name="AccentColorSet">设置AccentColor</string>
+</resources>

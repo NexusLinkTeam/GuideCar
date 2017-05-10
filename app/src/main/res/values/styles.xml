@@ -1,0 +1,49 @@
+<resources>
+
+    <style name="BaseTheme"  parent="Theme.AppCompat.Light.NoActionBar">
+        <!--这里的colorPrimaryDark其实为透明-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--默认accentColor为蓝色-->
+        <item name="colorAccent">@color/colorAccent</item>
+         <!--状态栏透明-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--导航栏透明-->
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!--白天模式-->
+    <style name="DayTheme" parent="BaseTheme">
+         <!--白色colorPrimary-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--windowBackground-->
+        <item name="android:windowBackground">@color/colorWhiteDark</item>
+        <!--主text-->
+        <item name="android:textColorPrimary">@color/colorBlackLight</item>
+        <!--次text-->
+        <item name="android:textColorSecondary">@color/colorGray</item>
+        <!--card颜色-->
+        <item name="cardBackgroundColor">@color/colorPrimary</item>
+        <!--主字体-->
+        <item name="myTextColorPrimary">@color/colorBlackLight</item>
+        <!--次字体-->
+        <item name="myTextColorSecondary">@color/colorGray</item>
+
+    </style>
+    <!--夜间模式-->
+    <style name="NightTheme" parent="BaseTheme">
+        <!--暗色colorPrimary-->
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <!--windowBackground-->
+        <item name="android:windowBackground">@color/colorBlackLighter</item>
+        <!--主text-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--次text-->
+        <item name="android:textColorSecondary">@color/colorGrayLight</item>
+        <!--card颜色-->
+        <item name="cardBackgroundColor">@color/colorPrimaryNight</item>
+        <!--主字体-->
+        <item name="myTextColorPrimary">@android:color/white</item>
+        <!--次字体-->
+        <item name="myTextColorSecondary">@color/colorGrayLight</item>
+    </style>
+</resources>
