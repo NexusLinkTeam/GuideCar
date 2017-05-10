@@ -2,7 +2,7 @@ package com.nexuslink.guidecar.util;
 
 import android.content.Intent;
 
-import com.nexuslink.guidecar.BaseActivity;
+import com.nexuslink.guidecar.ui.base.BaseActivity;
 
 /**
  * intent的简单封装（不算封装吧）

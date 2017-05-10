@@ -1,9 +1,11 @@
-package com.nexuslink.guidecar;
+package com.nexuslink.guidecar.ui;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
 
+import com.nexuslink.guidecar.R;
+import com.nexuslink.guidecar.ui.base.BaseActivity;
 import com.nexuslink.guidecar.util.SpUtil;
 import com.nexuslink.guidecar.util.ToastUtil;
 
@@ -15,6 +17,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @BindView(R.id.night_mode_switch)
     Switch switchNight;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
         switchNight.setChecked(SpUtil.getThemeId() == R.style.NightTheme);
         switchNight.setOnClickListener(this);
+
     }
 
     //主题切换

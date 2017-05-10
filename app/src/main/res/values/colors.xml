@@ -10,4 +10,5 @@
     <color name="colorPrimaryNight">#212121</color>
     <color name="colorBlackLighter">#303030</color>
     <color name="colorGrayLight">#BDBDBD</color>
+    <color name="colorGrayDark">#262626</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.nexuslink.guidecar;
+package com.nexuslink.guidecar.app;
 
 import android.app.Application;
 import android.content.Context;

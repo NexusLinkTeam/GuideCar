@@ -1,4 +1,4 @@
-package com.nexuslink.guidecar;
+package com.nexuslink.guidecar.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -2,7 +2,7 @@ package com.nexuslink.guidecar.util;
 
 import android.widget.Toast;
 
-import com.nexuslink.guidecar.GuideCarApplication;
+import com.nexuslink.guidecar.app.GuideCarApplication;
 
 /**
  * Toast简单封装

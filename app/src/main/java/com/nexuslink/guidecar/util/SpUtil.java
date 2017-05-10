@@ -2,7 +2,7 @@ package com.nexuslink.guidecar.util;
 
 import android.content.Context;
 
-import com.nexuslink.guidecar.GuideCarApplication;
+import com.nexuslink.guidecar.app.GuideCarApplication;
 
 import static com.nexuslink.guidecar.util.Config.THEME;
 import static com.nexuslink.guidecar.util.Config.THEME_DEFAULT;

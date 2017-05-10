@@ -40,7 +40,7 @@
         <!--次text-->
         <item name="android:textColorSecondary">@color/colorGrayLight</item>
         <!--card颜色-->
-        <item name="cardBackgroundColor">@color/colorPrimaryNight</item>
+        <item name="cardBackgroundColor">@color/colorGrayDark</item>
         <!--主字体-->
         <item name="myTextColorPrimary">@android:color/white</item>
         <!--次字体-->

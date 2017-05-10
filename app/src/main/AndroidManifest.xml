@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nexuslink.guidecar">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:name=".GuideCarApplication"
+        android:name=".app.GuideCarApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/BaseTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/DayTheme">
             <intent-filter>
@@ -20,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity"
+        <activity android:name=".ui.SettingActivity"
             android:theme="@style/DayTheme">
         </activity>
     </application>

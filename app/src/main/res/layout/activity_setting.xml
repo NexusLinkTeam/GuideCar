@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.nexuslink.guidecar.SettingActivity">
+    tools:context="com.nexuslink.guidecar.ui.SettingActivity">
 
     <include
         layout="@layout/app_bar_normal"

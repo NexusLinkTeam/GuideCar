@@ -1,4 +1,4 @@
-package com.nexuslink.guidecar;
+package com.nexuslink.guidecar.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +7,34 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.nexuslink.guidecar.R;
+import com.nexuslink.guidecar.model.bean.ForecastBean;
+import com.nexuslink.guidecar.net.RetrofitClient;
+import com.nexuslink.guidecar.net.WeatherApiService;
+import com.nexuslink.guidecar.presenter.IMainPresenter;
+import com.nexuslink.guidecar.presenter.MainPresenter;
+import com.nexuslink.guidecar.ui.base.BaseActivity;
+import com.nexuslink.guidecar.util.Config;
 import com.nexuslink.guidecar.util.IntentUtil;
+import com.nexuslink.guidecar.util.ToastUtil;
+
+import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,IMainView {
 
     private static final int SET_REQUEST = 0;
+    private static final String TAG = "MY_TAG";
+    private IMainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +43,8 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        presenter = new MainPresenter(this);
+        presenter.requestWeather("重庆");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -32,6 +53,25 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void test() {
+        RetrofitClient.Create(WeatherApiService.class)
+                .requestForecast("重庆", Config.KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ForecastBean>() {
+                    @Override
+                    public void accept(@NonNull ForecastBean forecastBean) throws Exception {
+                        String city = forecastBean.getHeWeather5().get(0).getBasic().getCity();
+                        Log.d(TAG, "accept: " + city);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.d(TAG, "accept: "+ throwable.getMessage());
+                    }
+                });
     }
 
     @Override
@@ -101,5 +141,16 @@ public class MainActivity extends BaseActivity
                     break;
             }
         }
+    }
+
+    /**
+     * 刷新天气信息
+     * @param weatherList 从当天算起的10条天气信息
+     */
+
+    @Override
+    public void updateWeatherInfo(List<ForecastBean.HeWeather5Bean> weatherList) {
+        // TODO: 2017/5/10 更新UI
+        ToastUtil.shortToast(weatherList.get(0).getDaily_forecast().get(0).getDate());
     }
 }
