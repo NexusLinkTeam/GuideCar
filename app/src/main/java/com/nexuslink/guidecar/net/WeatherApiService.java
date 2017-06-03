@@ -12,6 +12,8 @@ import retrofit2.http.Query;
  */
 
 public interface WeatherApiService {
+
+    //免费用户智能查找到包括当前日期的三天预报,所以后面两个只能捏造了
     @GET("/v5/forecast")
     Observable<ForecastBean> requestForecast(@Query("city") String city, @Query("key") String key);
 }

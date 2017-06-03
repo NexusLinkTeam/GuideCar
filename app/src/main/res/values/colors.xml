@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#F5F5F5</color>
-    <color name="colorPrimaryDark">#00717171</color>
+    <color name="colorPrimaryDark">#717171</color>
     <color name="colorAccent">#4387FA</color>
     <color name="colorWhiteDark">#FAFAFA</color>
     <color name="colorBlackLight">#202020</color>
@@ -11,4 +11,9 @@
     <color name="colorBlackLighter">#303030</color>
     <color name="colorGrayLight">#BDBDBD</color>
     <color name="colorGrayDark">#262626</color>
+    <!--谷歌logo的四个颜色-->
+    <color name="colorGoogleBlue">#4285f4</color>
+    <color name="colorGoogleRed">#ea4335</color>
+    <color name="colorGoogleYellow">#fbbc05</color>
+    <color name="colorGoogleGreen">#34a853</color>
 </resources>

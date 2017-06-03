@@ -13,4 +13,5 @@ public class Config {
     static final int THEME_DEFAULT = R.style.DayTheme;//默认白天主题
     public static final String HOST_NAME = "https://free-api.heweather.com";
     public static final String KEY = "3843c728876c4085a5573294011ce707";
+    public static final int OPEN_BLUETOOTH = 0;
 }

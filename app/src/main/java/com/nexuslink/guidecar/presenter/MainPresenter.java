@@ -5,6 +5,7 @@ import com.nexuslink.guidecar.model.DataCallback;
 import com.nexuslink.guidecar.model.WeatherModel;
 import com.nexuslink.guidecar.model.bean.ForecastBean;
 import com.nexuslink.guidecar.ui.IMainView;
+import com.nexuslink.guidecar.util.Config;
 import com.nexuslink.guidecar.util.ToastUtil;
 
 import java.util.List;
@@ -14,14 +15,14 @@ import java.util.List;
  * Created by Rye on 2017/5/10.
  */
 
-public class MainPresenter implements DataCallback<ForecastBean>,IMainPresenter {
+public class MainPresenter implements DataCallback<ForecastBean>,IMainPresenter{
 
     private IMainView view;
-    private IWeatherModel model;
+    private IWeatherModel weatherModel;
 
     public MainPresenter(IMainView view) {
         this.view = view;
-        model = new WeatherModel();
+        weatherModel = new WeatherModel();
     }
 
     //天气请求成功的回调
@@ -39,6 +40,6 @@ public class MainPresenter implements DataCallback<ForecastBean>,IMainPresenter 
 
     @Override
     public void requestWeather(String city) {
-        model.request(city,this);
+        weatherModel.request(city,this);
     }
 }

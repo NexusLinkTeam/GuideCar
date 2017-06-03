@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="BaseTheme"  parent="Theme.AppCompat.Light.NoActionBar">
         <!--这里的colorPrimaryDark其实为透明-->
@@ -7,8 +7,6 @@
         <item name="colorAccent">@color/colorAccent</item>
          <!--状态栏透明-->
         <item name="android:windowTranslucentStatus">true</item>
-        <!--导航栏透明-->
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <!--白天模式-->
@@ -45,5 +43,6 @@
         <item name="myTextColorPrimary">@android:color/white</item>
         <!--次字体-->
         <item name="myTextColorSecondary">@color/colorGrayLight</item>
+
     </style>
 </resources>

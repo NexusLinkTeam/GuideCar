@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position1" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position2" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position3" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position4" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position5" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position6" android:title="test"/>
+    <item android:icon="@mipmap/ic_launcher" android:id="@+id/position7" android:title="test"/>
+</menu>
