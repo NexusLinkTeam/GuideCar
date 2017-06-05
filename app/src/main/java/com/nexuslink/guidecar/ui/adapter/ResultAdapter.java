@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,18 +16,27 @@ import com.nexuslink.guidecar.ui.DeviceListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Rye on 2017/6/2.
  */
 
 public class ResultAdapter extends BaseAdapter{
+    public static final String TAG = "ResultAdapter";
     private List<ScanResult> results;
     private Context context;
 
     public ResultAdapter(Context context) {
         this.context = context;
         results = new ArrayList<>();
+    }
+
+    public void cleanAll(){
+        results.clear();
+        notifyDataSetChanged();
     }
 
     public void addNewDevice(ScanResult scanResult){
@@ -53,7 +63,7 @@ public class ResultAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-
+        Log.d(TAG, "getView: count"+getCount());
         if(convertView != null) {
             holder = (ViewHolder) convertView.getTag();
         }else {
@@ -69,7 +79,13 @@ public class ResultAdapter extends BaseAdapter{
         String name = device.getName();
         String mac = device.getAddress();
         int rssi = result.getRssi();
-        holder.txt_name.setText(name);
+        Log.d(TAG, "getView: name:" + name);
+        if(name == null) {
+            holder.txt_name.setText("Unknown Device");
+        } else {
+            holder.txt_name.setText(name);
+        }
+
         holder.txt_mac.setText(mac);
         holder.txt_rssi.setText(String.valueOf(rssi));
         return convertView;
