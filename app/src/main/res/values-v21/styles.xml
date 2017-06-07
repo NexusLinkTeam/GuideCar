@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NightTheme" parent="BaseTheme">
+        <!--暗色colorPrimary-->
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <!--windowBackground-->
+        <item name="android:windowBackground">@color/colorBlackLighter</item>
+        <!--主text-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--次text-->
+        <item name="android:textColorSecondary">@color/colorGrayLight</item>
+        <!--card颜色-->
+        <item name="cardBackgroundColor">@color/colorGrayDark</item>
+        <!--主字体-->
+        <item name="myTextColorPrimary">@android:color/white</item>
+        <!--次字体-->
+        <item name="myTextColorSecondary">@color/colorGrayLight</item>
+
+    </style>
+
+    <style name="DayTheme" parent="BaseTheme">
+        <!--白色colorPrimary-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--windowBackground-->
+        <item name="android:windowBackground">@color/colorWhiteDark</item>
+        <!--主text-->
+        <item name="android:textColorPrimary">@color/colorBlackLight</item>
+        <!--次text-->
+        <item name="android:textColorSecondary">@color/colorGray</item>
+        <!--card颜色-->
+        <item name="cardBackgroundColor">@color/colorPrimary</item>
+        <!--主字体-->
+        <item name="myTextColorPrimary">@color/colorBlackLight</item>
+        <!--次字体-->
+        <item name="myTextColorSecondary">@color/colorGray</item>
+
+    </style>
+</resources>

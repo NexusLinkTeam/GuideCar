@@ -36,6 +36,7 @@ import com.nexuslink.guidecar.util.BleManagerUtil;
 import com.nexuslink.guidecar.util.Config;
 import com.nexuslink.guidecar.util.IntentUtil;
 import com.nexuslink.guidecar.util.ToastUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;
 
@@ -100,6 +101,7 @@ public class MainActivity extends BaseActivity
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        requestPermission();
 
         initBottomSheet();
 
@@ -119,6 +121,29 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    private void requestPermission() {
+        RxPermissions.getInstance(this)
+                .request(Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(@NonNull Boolean aBoolean) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+
+                    }
+                });
+
     }
 
     private void initBottomSheet() {

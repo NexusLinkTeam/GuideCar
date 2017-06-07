@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--待修改，在代码中设置属性，复用-->
     <android.support.v7.widget.Toolbar
-        android:layout_marginTop="24dp"
         app:title="@string/toolbar_head"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
