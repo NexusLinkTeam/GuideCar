@@ -43,6 +43,7 @@
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toBottomOf="@+id/current_temp" />
         <ImageView
+            android:src="@drawable/weather_100_900"
             android:id="@+id/weather_today"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -83,6 +84,7 @@
             android:layout_marginStart="8dp" />
 
         <ImageView
+            android:src="@drawable/weather_100_900"
             android:id="@+id/weather_day1"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -103,6 +105,7 @@
             app:layout_constraintTop_toTopOf="@+id/day1" />
 
         <ImageView
+            android:src="@drawable/weather_312"
             android:id="@+id/weather_day2"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -122,6 +125,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/day2" />
 
         <ImageView
+            android:src="@drawable/weather_103"
             android:id="@+id/weather_day3"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -143,6 +147,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/day3" />
 
         <ImageView
+            android:src="@drawable/weather_101_102_104"
             android:id="@+id/weather_day4"
             android:layout_width="36dp"
             android:layout_height="36dp"

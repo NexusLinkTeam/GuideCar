@@ -5,8 +5,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--这里的colorPrimaryDark其实为透明-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <!--白天模式-->

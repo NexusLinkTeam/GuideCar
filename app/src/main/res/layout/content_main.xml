@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.nexuslink.guidecar.ui.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-    <LinearLayout
-        android:orientation="vertical"
+    >
+    <ScrollView
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/card_weather"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_test_bluetooth"
-            android:text="btn_test_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
 
-        <Button
-            android:id="@+id/btn_test_bottom"
-            android:text="btn_test_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="56dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重庆" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="56dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="成都" />
+            </RelativeLayout>
+
+            <include layout="@layout/card_user_info"/>
+
+            <include layout="@layout/card_weather"/>
+
+            <Button
+                android:id="@+id/btn_test_bluetooth"
+                android:text="btn_test_bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_test_bottom"
+                android:text="btn_test_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <include layout="@layout/card_weather"/>
+        </LinearLayout>
+    </ScrollView>
+
 
 
 </com.flipboard.bottomsheet.BottomSheetLayout>
