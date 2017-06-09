@@ -3,7 +3,13 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--待修改，在代码中设置属性，复用-->
+
+    <View
+        android:fitsSystemWindows="true"
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"/>
+
     <android.support.v7.widget.Toolbar
         app:title="@string/toolbar_head"
         android:id="@+id/toolbar"

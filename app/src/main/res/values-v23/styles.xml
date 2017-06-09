@@ -1,15 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <style name="BaseTheme"  parent="Theme.AppCompat.Light.NoActionBar">
-        <!--默认accentColor为蓝色-->
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    </style>
-
-    <!--白天模式-->
     <style name="DayTheme" parent="BaseTheme">
-         <!--白色colorPrimary-->
+        <!--白色colorPrimary-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--windowBackground-->
         <item name="android:windowBackground">@color/colorWhiteDark</item>
@@ -24,8 +17,10 @@
         <!--次字体-->
         <item name="myTextColorSecondary">@color/colorGray</item>
 
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
-    <!--夜间模式-->
+
     <style name="NightTheme" parent="BaseTheme">
         <!--暗色colorPrimary-->
         <item name="colorPrimary">@color/colorPrimaryNight</item>
@@ -42,5 +37,6 @@
         <!--次字体-->
         <item name="myTextColorSecondary">@color/colorGrayLight</item>
 
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

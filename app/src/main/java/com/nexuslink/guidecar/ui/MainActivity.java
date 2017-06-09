@@ -2,17 +2,10 @@ package com.nexuslink.guidecar.ui;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,9 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.clj.fastble.BleManager;
-import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.flipboard.bottomsheet.commons.MenuSheetView;
 import com.nexuslink.guidecar.R;
 import com.nexuslink.guidecar.model.bean.ForecastBean;
 import com.nexuslink.guidecar.net.RetrofitClient;
@@ -32,7 +22,6 @@ import com.nexuslink.guidecar.net.WeatherApiService;
 import com.nexuslink.guidecar.presenter.IMainPresenter;
 import com.nexuslink.guidecar.presenter.MainPresenter;
 import com.nexuslink.guidecar.ui.base.BaseActivity;
-import com.nexuslink.guidecar.util.BleManagerUtil;
 import com.nexuslink.guidecar.util.Config;
 import com.nexuslink.guidecar.util.IntentUtil;
 import com.nexuslink.guidecar.util.ToastUtil;
@@ -40,7 +29,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -54,13 +42,9 @@ public class MainActivity extends BaseActivity
     private static final int SET_REQUEST = 0;
     private static final String TAG = "MainActivity";
     private IMainPresenter presenter;
-    private MenuSheetView menuSheetView;
-
-    @BindView(R.id.bottom_sheet)
-    BottomSheetLayout bottomSheet;
 
     @OnClick(R.id.btn_test_bluetooth)
-    void showBottomSheet() {
+    void connect() {
 
         //测试蓝牙连接
         if (!getBleManager().isBlueEnable()) {
@@ -88,12 +72,6 @@ public class MainActivity extends BaseActivity
 
     }
 
-    @OnClick(R.id.btn_test_bottom)
-    void showSheet() {
-        //测试bottomSheet
-        bottomSheet.showWithSheetView(menuSheetView);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,16 +81,12 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
         requestPermission();
 
-        initBottomSheet();
-
-        //定位测试
 /*
         startLocation();
 */
-
         presenter = new MainPresenter(this);
         //测试和风天气接口
-        presenter.requestWeather("重庆");
+        /*presenter.requestWeather("重庆");*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -146,19 +120,6 @@ public class MainActivity extends BaseActivity
 
     }
 
-    private void initBottomSheet() {
-        menuSheetView =
-                new MenuSheetView(MainActivity.this, MenuSheetView.MenuType.GRID, "Create...", new MenuSheetView.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (bottomSheet.isSheetShowing()) {
-                            bottomSheet.dismissSheet();
-                        }
-                        return true;
-                    }
-                });
-        menuSheetView.inflateMenu(R.menu.sheet_bottom);
-    }
 
     private void test() {
         RetrofitClient.Create(WeatherApiService.class)

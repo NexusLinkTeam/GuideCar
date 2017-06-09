@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottom_sheet"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <ScrollView
-        android:fitsSystemWindows="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
+            android:paddingBottom="56dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="128dp">
 
                 <TextView
+                    android:id="@+id/position_a"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="56dp"
                     android:layout_width="wrap_content"
@@ -26,17 +26,36 @@
                     android:text="重庆" />
 
                 <TextView
+                    android:id="@+id/position_b"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="56dp"
                     android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="成都" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@id/position_a"
+                    android:layout_centerHorizontal="true"
+                    android:text="2小时30分"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginBottom="8dp"
+                    android:layout_above="@+id/time"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_plane"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" />
             </RelativeLayout>
 
-            <include layout="@layout/card_user_info"/>
-
             <include layout="@layout/card_weather"/>
+
+            <include layout="@layout/card_user_info"/>
 
             <Button
                 android:id="@+id/btn_test_bluetooth"
@@ -49,10 +68,9 @@
                 android:text="btn_test_bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <include layout="@layout/card_positions"/>
             <include layout="@layout/card_weather"/>
         </LinearLayout>
-    </ScrollView>
 
 
-
-</com.flipboard.bottomsheet.BottomSheetLayout>
+</ScrollView>
