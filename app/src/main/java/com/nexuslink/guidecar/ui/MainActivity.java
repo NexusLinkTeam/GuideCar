@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,6 +31,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,7 +46,29 @@ public class MainActivity extends BaseActivity
     private static final String TAG = "MainActivity";
     private IMainPresenter presenter;
 
-    @OnClick(R.id.btn_test_bluetooth)
+    // 为录视频而写的
+    @OnClick(R.id.imageView12) void testNavi () {
+        new AlertDialog
+                .Builder(this)
+                .setTitle("提示")
+                .setMessage("要去”位置A“吗？")
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainActivity.this, NaviActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    @OnClick(R.id.fab_bluetooth)
     void connect() {
 
         //测试蓝牙连接
@@ -80,6 +105,7 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         requestPermission();
+
 
 /*
         startLocation();
@@ -173,17 +199,19 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        // TODO: 2017/6/13 名字等等改
         if (id == R.id.nav_camera) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        /*} else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow) {*/
 
         } else if (id == R.id.nav_manage) {
             IntentUtil.simpleStartForresultActivity(this, SettingActivity.class, SET_REQUEST);

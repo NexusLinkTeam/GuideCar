@@ -16,6 +16,7 @@ public class LoginActivity extends BaseActivity {
     @OnClick(R.id.button) void login() {
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

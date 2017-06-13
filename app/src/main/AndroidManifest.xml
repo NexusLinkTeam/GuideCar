@@ -23,16 +23,19 @@
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/DayTheme">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".ui.SettingActivity"
-            android:theme="@style/DayTheme"></activity>
-        <activity android:name=".ui.DeviceListActivity"></activity>
+            android:theme="@style/DayTheme" />
+        <activity android:name=".ui.DeviceListActivity" />
 
         <service android:name=".service.BlueToothService" />
 
@@ -43,6 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.NaviActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_navi"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

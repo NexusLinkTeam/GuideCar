@@ -19,7 +19,6 @@
         android:layout_height="56dp">
         <TextView
             android:textSize="20sp"
-            android:textColor="@android:color/white"
             android:layout_marginStart="72dp"
             android:layout_centerVertical="true"
             android:text ="蓝牙"
@@ -48,9 +47,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <android.support.design.widget.FloatingActionButton
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
         android:id="@+id/load_fab"
         android:src="@drawable/ic_load"
-        android:layout_margin="16dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"

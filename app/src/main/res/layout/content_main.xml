@@ -56,18 +56,6 @@
             <include layout="@layout/card_weather"/>
 
             <include layout="@layout/card_user_info"/>
-
-            <Button
-                android:id="@+id/btn_test_bluetooth"
-                android:text="btn_test_bluetooth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_test_bottom"
-                android:text="btn_test_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <include layout="@layout/card_positions"/>
             <include layout="@layout/card_weather"/>
         </LinearLayout>

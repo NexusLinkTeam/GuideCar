@@ -26,7 +26,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
         switchNight.setChecked(SpUtil.getThemeId() == R.style.NightTheme);
         switchNight.setOnClickListener(this);
-
     }
 
     //主题切换

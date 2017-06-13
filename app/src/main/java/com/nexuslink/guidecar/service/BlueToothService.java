@@ -12,10 +12,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.clj.fastble.BleManager;
+import com.clj.fastble.conn.BleCharacterCallback;
 import com.clj.fastble.conn.BleGattCallback;
 import com.clj.fastble.data.ScanResult;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.ListScanCallback;
+import com.clj.fastble.utils.HexUtil;
 import com.nexuslink.guidecar.ui.UICallBack;
 import com.nexuslink.guidecar.util.BleManagerUtil;
 
@@ -25,7 +27,7 @@ import javax.security.auth.callback.Callback;
  * Created by Rye on 2017/6/4.
  */
 
-public class BlueToothService extends Service{
+public class BlueToothService extends Service {
     private static final long SCAN_TIME_OUT = 4000;//扫描8秒超时
     private static final String TAG = "BlueToothService";
     private BlueBinder blueBinder = new BlueBinder();
@@ -37,6 +39,7 @@ public class BlueToothService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind: 绑定成功");
         return blueBinder;
     }
 
@@ -45,6 +48,20 @@ public class BlueToothService extends Service{
         super.onCreate();
         bleManager = BleManagerUtil.getInstance();
         bleManager.enableBluetooth();//开启蓝牙
+        Thread a = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    Log.d(TAG, "run: log");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        a.start();
     }
 
     @Override
@@ -56,8 +73,8 @@ public class BlueToothService extends Service{
         bleManager.cancelScan();
     }
 
-    public class BlueBinder extends Binder{
-        public BlueToothService getService(){
+    public class BlueBinder extends Binder {
+        public BlueToothService getService() {
             return BlueToothService.this;
         }
     }
@@ -65,9 +82,9 @@ public class BlueToothService extends Service{
     public void scanDevice() {
         Log.d(TAG, "start");
 
-        if(uiCallback != null) {
+        if (uiCallback != null) {
             uiCallback.startScan();
-        }else {
+        } else {
             Log.e(TAG, "scanDevice: scanCallback 为空");
         }
 
@@ -96,8 +113,8 @@ public class BlueToothService extends Service{
     private void runOnMainThread(Runnable runnable) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             runnable.run();
-        }else {
-             mThreadHandler.post(runnable);
+        } else {
+            mThreadHandler.post(runnable);
         }
     }
 
@@ -140,12 +157,17 @@ public class BlueToothService extends Service{
         bleManager.enableBluetooth();
     }
 
-    public void disableBluetooth () {
+    public void disableBluetooth() {
         bleManager.disableBluetooth();
     }
 
     public Boolean isBlueEnable() {
         return bleManager.isBlueEnable();
+    }
+
+    //向蓝牙设备写入数据 16
+    public void write(String uuid_service, String uuid_write, String hex, BleCharacterCallback callback) {
+        bleManager.writeDevice(uuid_service, uuid_write, HexUtil.hexStringToBytes(hex), callback);
     }
 
 }

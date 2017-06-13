@@ -13,4 +13,8 @@
     <string name="LightMode_Detail">降低屏幕亮度</string>
     <string name="NightModeAuto">自动切换夜间模式</string>
     <string name="AccentColorSet">设置AccentColor</string>
+
+    <string name="title_activity_navi">NaviActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

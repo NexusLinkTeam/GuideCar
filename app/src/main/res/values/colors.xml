@@ -16,4 +16,6 @@
     <color name="colorGoogleRed">#ea4335</color>
     <color name="colorGoogleYellow">#fbbc05</color>
     <color name="colorGoogleGreen">#34a853</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -1,6 +1,9 @@
 package com.nexuslink.guidecar.util;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import com.nexuslink.guidecar.ui.base.BaseActivity;
 
@@ -10,12 +13,15 @@ import com.nexuslink.guidecar.ui.base.BaseActivity;
  */
 
 public class IntentUtil {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void simpleStartActivity(BaseActivity fromActivity, Class targetActivity){
         Intent intent = new Intent(fromActivity,targetActivity);
-        fromActivity.startActivity(intent);
+        fromActivity.startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(fromActivity).toBundle());
     }
-    public static void simpleStartForresultActivity(BaseActivity fromActivity, Class targetActivity,int requestCode){
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void simpleStartForresultActivity(BaseActivity fromActivity, Class targetActivity, int requestCode){
         Intent intent = new Intent(fromActivity,targetActivity);
-        fromActivity.startActivityForResult(intent,requestCode);
+        intent.putExtra("transition","explode");
+        fromActivity.startActivityForResult(intent,requestCode, ActivityOptions.makeSceneTransitionAnimation(fromActivity).toBundle());
     }
 }

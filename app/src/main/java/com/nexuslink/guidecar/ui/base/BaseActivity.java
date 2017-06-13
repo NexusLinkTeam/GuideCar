@@ -36,5 +36,7 @@ public class BaseActivity extends AppCompatActivity {
     public BleManager getBleManager() {
         return BleManagerUtil.getInstance();
     }
+
+    //
 }
 

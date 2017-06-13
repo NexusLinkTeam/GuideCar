@@ -117,7 +117,7 @@ public class DeviceListActivity extends BaseActivity {
 
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.rotate);
         loadFab.setAnimation(animation);
-
+        Log.d(TAG, "onCreate: " + (blueToothService == null));
         if(blueToothService == null) {
             bindService();//连接成功后会有回调扫描device
         }else {
@@ -150,7 +150,9 @@ public class DeviceListActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if(blueToothService != null) {
-            unBindService();//防止内存泄漏
+            unBindService();
+            blueToothService.onDestroy();
+            Log.d(TAG, "onDestroy");
         }
     }
 
@@ -201,10 +203,12 @@ public class DeviceListActivity extends BaseActivity {
     public void bindService() {
         Intent intent = new Intent(DeviceListActivity.this, BlueToothService.class);
         bindService(intent,connection,BIND_AUTO_CREATE);
+        Log.d(TAG, "bindService: 服务绑定了");
     }
 
     public void unBindService() {
         unbindService(connection);
+        Log.d(TAG, "unBindService: 服务解绑了");
     }
 
     ServiceConnection connection = new ServiceConnection() {
