@@ -1,6 +1,7 @@
 package com.nexuslink.guidecar.ui;
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +9,14 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
+import com.clj.fastble.conn.BleCharacterCallback;
+import com.clj.fastble.exception.BleException;
+import com.clj.fastble.utils.HexUtil;
 import com.nexuslink.guidecar.R;
 import com.nexuslink.guidecar.ui.base.BaseActivity;
+import com.nexuslink.guidecar.util.ToastUtil;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -94,6 +100,28 @@ public class NaviActivity extends BaseActivity {
 
         setContentView(R.layout.activity_navi);
 
+        //这里假装完成导航
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setResult(RESULT_OK);
+                finish();
+            }
+        },5000);
+
+        // 在onCreate方法中尝试发送数据
+       /* write(,, "0x01", new BleCharacterCallback() {
+            @Override
+            public void onSuccess(BluetoothGattCharacteristic characteristic) {
+                ToastUtil.shortToast("发送成功");
+            }
+
+            @Override
+            public void onFailure(BleException exception) {
+                ToastUtil.shortToast("发送失败" + exception.toString());
+            }
+        });*/
+
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -165,4 +193,5 @@ public class NaviActivity extends BaseActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
 }

@@ -3,7 +3,10 @@ package com.nexuslink.guidecar.ui;
 
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -23,14 +27,20 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.clj.fastble.conn.BleCharacterCallback;
 import com.clj.fastble.conn.BleGattCallback;
 import com.clj.fastble.data.ScanResult;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.ListScanCallback;
+import com.clj.fastble.utils.HexUtil;
 import com.nexuslink.guidecar.R;
 import com.nexuslink.guidecar.service.BlueToothService;
 import com.nexuslink.guidecar.ui.adapter.ResultAdapter;
 import com.nexuslink.guidecar.ui.base.BaseActivity;
+import com.nexuslink.guidecar.util.ToastUtil;
+
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,6 +83,64 @@ public class DeviceListActivity extends BaseActivity {
         } else {
             Toast.makeText(DeviceListActivity.this,"状态栏上还没有蓝牙标志哦",Toast.LENGTH_SHORT).show();
         }
+    }
+
+      // (垃圾排版啊，明天与硬件测试下~)
+    @OnClick(R.id.imageView12) void testNavi () {
+        new AlertDialog
+                .Builder(this)
+                .setTitle("提示")
+                .setMessage("要去”位置A“吗？")
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /*完成数据发送才跳转*/
+                        /*为演示视屏*/
+                        if(blueToothService != null){
+                            BluetoothGatt gatt =  blueToothService.getGatt();
+                            List<BluetoothGattService> bluetoothGattServiceList = gatt.getServices();
+                            /*这里获得了所有的的service*/
+                            for (BluetoothGattService bluetoothGattService : bluetoothGattServiceList) {
+                                for ( BluetoothGattCharacteristic characteristic : bluetoothGattService.getCharacteristics()) {
+                                    Log.d(TAG, "characteristic" + bluetoothGattService.getUuid().toString());
+                                    if (Objects.equals(characteristic.getUuid().toString(), "0000fff1-0000-1000-8000-00805f9b34fb")) {
+                                        blueToothService.write(characteristic.getService().getUuid().toString(),
+                                                "0000fff1-0000-1000-8000-00805f9b34fb",
+                                                "f1",
+                                                new BleCharacterCallback() {
+                                                    @Override
+                                                    public void onSuccess(BluetoothGattCharacteristic characteristic) {
+                                                        // 后面再写
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                ToastUtil.shortToast("开始导航");
+                                                                Intent intent = new Intent(DeviceListActivity.this,NaviActivity.class);
+                                                                startActivityForResult(intent,0);
+                                                            }
+                                                        });
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(BleException exception) {
+                                                        ToastUtil.shortToast("发送失败");
+                                                    }
+                                                });
+                                    }
+                                }
+                            }
+                        } else {
+                            ToastUtil.shortToast("blueToothService为空");
+                        }
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -226,4 +294,20 @@ public class DeviceListActivity extends BaseActivity {
             blueToothService = null;
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 0) {
+            new AlertDialog.Builder(DeviceListActivity.this)
+                    .setTitle("提示")
+                    .setMessage("导航完成")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }
+    }
 }

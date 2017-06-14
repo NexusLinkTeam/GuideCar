@@ -46,27 +46,6 @@ public class MainActivity extends BaseActivity
     private static final String TAG = "MainActivity";
     private IMainPresenter presenter;
 
-    // 为录视频而写的
-    @OnClick(R.id.imageView12) void testNavi () {
-        new AlertDialog
-                .Builder(this)
-                .setTitle("提示")
-                .setMessage("要去”位置A“吗？")
-                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MainActivity.this, NaviActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
 
     @OnClick(R.id.fab_bluetooth)
     void connect() {

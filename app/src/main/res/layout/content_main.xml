@@ -56,7 +56,6 @@
             <include layout="@layout/card_weather"/>
 
             <include layout="@layout/card_user_info"/>
-            <include layout="@layout/card_positions"/>
             <include layout="@layout/card_weather"/>
         </LinearLayout>
 

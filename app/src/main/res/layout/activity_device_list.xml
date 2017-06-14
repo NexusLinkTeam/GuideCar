@@ -32,12 +32,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-    <ListView
+    <include
+        android:id="@+id/card_positions"
+        layout="@layout/card_positions"
         android:layout_below="@id/layout_switch"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <ListView
+        android:layout_below="@id/card_positions"
         android:id="@+id/list_device"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     </ListView>
+
     <TextView
         android:textSize="18sp"
         android:visibility="gone"

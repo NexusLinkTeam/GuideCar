@@ -2,6 +2,8 @@ package com.nexuslink.guidecar.service;
 
 import android.app.Service;
 import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
@@ -35,6 +37,12 @@ public class BlueToothService extends Service {
     private Handler mThreadHandler = new Handler(Looper.getMainLooper());
 
     private UICallBack uiCallback;
+
+    private BluetoothGattCharacteristic characteristic;
+    private BluetoothGattService service;
+    private BluetoothGatt gatt;
+
+
 
     @Nullable
     @Override
@@ -131,6 +139,7 @@ public class BlueToothService extends Service {
 
             @Override
             public void onConnectSuccess(BluetoothGatt gatt, int status) {
+                BlueToothService.this.gatt = gatt;
                 gatt.discoverServices();
                 runOnMainThread(new Runnable() {
                     @Override
@@ -168,6 +177,26 @@ public class BlueToothService extends Service {
     //向蓝牙设备写入数据 16
     public void write(String uuid_service, String uuid_write, String hex, BleCharacterCallback callback) {
         bleManager.writeDevice(uuid_service, uuid_write, HexUtil.hexStringToBytes(hex), callback);
+    }
+
+    public void setCharacteristic(BluetoothGattCharacteristic characteristic) {
+        this.characteristic = characteristic;
+    }
+
+    public BluetoothGattCharacteristic getCharacteristic() {
+        return characteristic;
+    }
+
+    public void setService(BluetoothGattService service) {
+        this.service = service;
+    }
+
+    public BluetoothGattService getService() {
+        return service;
+    }
+
+    public BluetoothGatt getGatt() {
+        return gatt;
     }
 
 }
